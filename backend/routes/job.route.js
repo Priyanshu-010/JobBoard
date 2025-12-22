@@ -1,7 +1,15 @@
 import express from "express";
 import { protect } from "../middleware/authMiddleware.js";
 import { isAdmin } from "../middleware/isAdmin.js";
-import { getJobs, getSingleJob } from "../controllers/job.controller.js";
+import {
+  applyToJob,
+  createJob,
+  deleteJob,
+  getJobs,
+  getSingleJob,
+  updateApplicationStatus,
+  updateJob,
+} from "../controllers/job.controller.js";
 
 const router = express.Router();
 
@@ -10,14 +18,19 @@ router.get("/", getJobs);
 router.get("/:id", getSingleJob);
 
 // Admin
-router.post("/", protect, isAdmin);
-router.put("/:id", protect, isAdmin);
-router.delete("/:id", protect, isAdmin);
+router.post("/", protect, isAdmin, createJob);
+router.put("/:id", protect, isAdmin, updateJob);
+router.delete("/:id", protect, isAdmin, deleteJob);
 
 // User
-router.post("/:id/apply", protect);
+router.post("/:id/apply", protect, applyToJob);
 
 // Admin - Applcation Management
-router.patch("/:id/applications/:userId", protect, isAdmin);
+router.patch(
+  "/:id/applications/:userId",
+  protect,
+  isAdmin,
+  updateApplicationStatus
+);
 
 export default router;
