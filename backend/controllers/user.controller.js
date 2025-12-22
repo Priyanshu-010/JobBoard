@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
-import User from "../models/user";
-import { json } from "stream/consumers";
+import User from "../models/user.js";
+import jwt from "jsonwebtoken"
 
 export const register = async (req, res) => {
   const { name, email, password } = req.body;
@@ -33,7 +33,7 @@ export const register = async (req, res) => {
     const token = jwt.sign({ userId: newUser._id }, process.env.SECRET_KEY, {
       expiresIn: "7d",
     });
-    res.status(201),json({
+    res.status(201).json({
       message: "User Created",
       token,
       newUser: {
@@ -47,7 +47,7 @@ export const register = async (req, res) => {
       .status(500)
       .json({ message: "Internal Server Error - Cannot register" });
     console.log("Error in register controller", error);
-  }
+  } ``
 };
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -74,10 +74,10 @@ export const login = async (req, res) => {
       return res.status(400).json({ message: "Invalid Credentials" });
     }
 
-    const token = jwt.sign({ userId: newUser._id }, process.env.SECRET_KEY, {
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
       expiresIn: "7d",
     });
-    res.status(201),json({
+    res.status(201).json({
       message: "Login Successfully",
       token,
       user: {
