@@ -114,13 +114,12 @@ export const applyToJob = async (req, res) => {
 // Admin - Updating Application Status
 export const updateApplicationStatus  = async (req, res) => {
   try {
-    const { id } = req.params;
-    const userId = req.user.id;
+    const { id, userId } = req.params;
     const job = await Job.findById(id);
 
-    const {applications} = req.body;
+    const {status} = req.body;
 
-    if (!["accepted", "rejected"].includes(applications.status)) {
+    if (!["accepted", "rejected"].includes(status)) {
       return res.status(400).json({ message: "Invalid status" });
     }
 
