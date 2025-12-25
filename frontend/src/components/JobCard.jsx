@@ -1,8 +1,12 @@
 import React from 'react'
 
-function JobCard() {
+function JobCard({job}) {
   return (
-    <div>JobCard</div>
+    <div className=''>
+      <h1>{job.company}</h1>
+      <h1>{job.role}</h1>
+      <h1>{job.description}</h1>
+    </div>
   )
 }
 

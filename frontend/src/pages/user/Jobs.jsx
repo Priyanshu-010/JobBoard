@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../api/axios.js";
+import JobCard from "../../components/JobCard.jsx";
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
@@ -17,12 +18,9 @@ function Jobs() {
   }, []);
 
   return (
-    <div>
+    <div className="p-6">
       {jobs.map((job)=>(
-        <div key={job._id}>
-          <h1>{job.company}</h1>
-          <p>{job.role}</p>
-        </div>
+        <JobCard job={job} />
       ))}
     </div>
   );

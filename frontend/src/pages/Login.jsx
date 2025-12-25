@@ -12,7 +12,7 @@ function Login() {
     e.preventDefault();
     try {
       const res = await axiosInstance.post("/auth/login", { email, password });
-      login(res.data.user, res.data.token)
+      login(res.data)
       toast.success("Login Successfull")
       console.log(res.data)
     } catch (error) {

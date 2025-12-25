@@ -1,9 +1,13 @@
-import React from 'react'
+import { Navigate } from "react-router-dom";
+import useAuthStore from "../store/authStore.js";
 
-function ProtectedRoute() {
-  return (
-    <div>ProtectedRoute</div>
-  )
+function ProtectedRoute({ children }) {
+  const user = useAuthStore((state) => state.user);
+
+  if(!user){
+    return <Navigate to="/login"/>
+  }
+  return children
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;
