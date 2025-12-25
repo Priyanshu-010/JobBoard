@@ -2,7 +2,7 @@ import React from 'react'
 
 function JobCard({job}) {
   return (
-    <div className=''>
+    <div className='' key={job._id}>
       <h1>{job.company}</h1>
       <h1>{job.role}</h1>
       <h1>{job.description}</h1>

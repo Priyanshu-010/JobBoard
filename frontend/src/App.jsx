@@ -5,10 +5,10 @@ import Jobs from "./pages/user/Jobs";
 import JobsDetail from "./pages/user/JobDetails";
 import MyApplications from "./pages/user/MyApplications";
 
-import AdminDashboard from "./pages/admin/AdminDashboard"
-import AdminJobApplications from "./pages/admin/AdminJobApplications"
-import CreateJob from "./pages/admin/CreateJob"
-import EditJob from "./pages/admin/EditJob"
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminJobApplications from "./pages/admin/AdminJobApplications";
+import CreateJob from "./pages/admin/CreateJob";
+import EditJob from "./pages/admin/EditJob";
 
 import Login from "./pages/Login";
 import Register from "./pages/register";
@@ -20,7 +20,6 @@ function App() {
     <div className="text-blue-300 bg-black h-screen">
       <Navbar />
       <Routes>
-
         {/* AUTH */}
 
         <Route path="/login" element={<Login />} />
@@ -52,7 +51,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
 
         <Route
           path="/dashboard"

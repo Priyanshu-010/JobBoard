@@ -7,11 +7,11 @@ function AdminRoute({children}) {
   const user = useAuthStore((state) => state.user);
 
   if(!token){
-    <Navigate to="/login" replace/>
+    return <Navigate to="/login" replace/>
   }
 
   if(user !== "admin"){
-    <Navigate to="/login" replace/>
+    return <Navigate to="/login" replace/>
   }
 
   return children;

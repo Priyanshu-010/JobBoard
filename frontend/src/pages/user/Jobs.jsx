@@ -20,7 +20,7 @@ function Jobs() {
   return (
     <div className="p-6">
       {jobs.map((job)=>(
-        <JobCard job={job} />
+        <JobCard job={job} key={job._id} />
       ))}
     </div>
   );
