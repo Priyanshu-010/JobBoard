@@ -1,20 +1,27 @@
 import React, { useState } from "react";
 import useAuthStore from "../store/authStore";
 import axiosInstance from "../api/axios";
-import {toast} from "react-hot-toast"
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { login } = useAuthStore();
+  const navigate = useNavigate()
   const handleClick = async (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      toast.error("Please enter both email and password");
+      return;
+    }
     try {
       const res = await axiosInstance.post("/auth/login", { email, password });
-      login(res.data)
-      toast.success("Login Successfull")
-      console.log(res.data)
+      login(res.data.user, res.data.token);
+      toast.success("Login Successfull");
+      navigate("/")
+      // console.log(res.data.user.role);
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +38,7 @@ function Login() {
         <br></br>
         <label>password: </label>
         <input
-          type="passwrod"
+          type="password"
           placeholder="Enter Your password"
           onChange={(e) => setPassword(e.target.value)}
         />
