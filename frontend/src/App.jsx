@@ -2,8 +2,13 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 import Jobs from "./pages/user/Jobs";
+import JobsDetail from "./pages/user/JobDetails";
+import MyApplications from "./pages/user/MyApplications";
 
+import AdminDashboard from "./pages/admin/AdminDashboard"
+import AdminJobApplications from "./pages/admin/AdminJobApplications"
 import CreateJob from "./pages/admin/CreateJob"
+import EditJob from "./pages/admin/EditJob"
 
 import Login from "./pages/Login";
 import Register from "./pages/register";
@@ -15,8 +20,14 @@ function App() {
     <div className="text-blue-300 bg-black h-screen">
       <Navbar />
       <Routes>
+
+        {/* AUTH */}
+
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        {/* USER */}
+
         <Route
           path="/"
           element={
@@ -26,11 +37,59 @@ function App() {
           }
         />
         <Route
+          path="/details/:id"
+          element={
+            <ProtectedRoute>
+              <JobsDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/apps"
+          element={
+            <ProtectedRoute>
+              <MyApplications />
+            </ProtectedRoute>
+          }
+        />
+
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-apps"
+          element={
+            <ProtectedRoute>
+              <AdminRoute>
+                <AdminJobApplications />
+              </AdminRoute>
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/create"
           element={
             <ProtectedRoute>
               <AdminRoute>
                 <CreateJob />
+              </AdminRoute>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/edit/:jobId"
+          element={
+            <ProtectedRoute>
+              <AdminRoute>
+                <EditJob />
               </AdminRoute>
             </ProtectedRoute>
           }
