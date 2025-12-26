@@ -3,8 +3,22 @@ import Job from "../models/jobSchema.js";
 // Public
 export const getJobs = async (req, res) => {
   try {
+    const userId = req.user?._id;
     const jobs = await Job.find({}).sort({ createdAt: -1 });
-    res.status(200).json(jobs);
+    const jobsWithAppliedFlag = jobs.map((job) => {
+      const hasApplied = userId
+        ? job.applications.some(
+            (app) => app.user.toString() === userId.toString()
+          )
+        : false;
+
+      return {
+        ...job.toObject(),
+        hasApplied,
+      };
+    });
+
+    res.status(200).json(jobsWithAppliedFlag);
   } catch (error) {
     res
       .status(500)
@@ -15,8 +29,22 @@ export const getJobs = async (req, res) => {
 export const getSingleJob = async (req, res) => {
   try {
     const { id } = req.params;
+    const userId = req.user?._id;
     const job = await Job.findById(id);
-    res.status(200).json(job);
+     if (!job) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    const hasApplied = userId
+      ? job.applications.some(
+          (app) => app.user.toString() === userId.toString()
+        )
+      : false;
+
+    res.status(200).json({
+      ...job.toObject(),
+      hasApplied,
+    });
   } catch (error) {
     res
       .status(500)
@@ -112,12 +140,12 @@ export const applyToJob = async (req, res) => {
 };
 
 // Admin - Updating Application Status
-export const updateApplicationStatus  = async (req, res) => {
+export const updateApplicationStatus = async (req, res) => {
   try {
     const { id, userId } = req.params;
     const job = await Job.findById(id);
 
-    const {status} = req.body;
+    const { status } = req.body;
 
     if (!["accepted", "rejected"].includes(status)) {
       return res.status(400).json({ message: "Invalid status" });
@@ -141,7 +169,10 @@ export const updateApplicationStatus  = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Internal Server Error - Cannot update application status of the Job" });
+      .json({
+        message:
+          "Internal Server Error - Cannot update application status of the Job",
+      });
     console.log("Error in updateApplicationStatus controller", error);
   }
 };

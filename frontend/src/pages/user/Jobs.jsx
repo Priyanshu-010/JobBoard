@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axiosInstance from "../../api/axios.js";
 import JobCard from "../../components/JobCard.jsx";
 
@@ -10,6 +10,7 @@ function Jobs() {
       try {
         const res = await axiosInstance.get("/job");
         setJobs(res.data);
+        console.log(res.data)
       } catch (error) {
         console.log(error);
       }
@@ -18,7 +19,7 @@ function Jobs() {
   }, []);
 
   return (
-    <div className="p-6">
+    <div className="flex gap-6">
       {jobs.map((job)=>(
         <JobCard job={job} key={job._id} />
       ))}
