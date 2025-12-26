@@ -40,6 +40,7 @@ export const register = async (req, res) => {
         id: newUser._id,
         name: newUser.name,
         email: newUser.email,
+        role: newUser.role
       }
     });
   } catch (error) {

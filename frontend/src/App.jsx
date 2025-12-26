@@ -17,82 +17,84 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 function App() {
   return (
-    <div className="text-blue-300 bg-black h-screen">
+    <div className="text-blue-300 bg-black min-h-screen">
       <Navbar />
-      <Routes>
-        {/* AUTH */}
+      <main className="container mx-auto p-4 md:p-8">
+        <Routes>
+          {/* AUTH */}
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        {/* USER */}
+          {/* USER */}
 
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Jobs />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/details/:id"
-          element={
-            <ProtectedRoute>
-              <JobsDetail />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/apps"
-          element={
-            <ProtectedRoute>
-              <MyApplications />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Jobs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/details/:id"
+            element={
+              <ProtectedRoute>
+                <JobsDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/apps"
+            element={
+              <ProtectedRoute>
+                <MyApplications />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <AdminRoute>
-                <AdminDashboard />
-              </AdminRoute>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin-apps"
-          element={
-            <ProtectedRoute>
-              <AdminRoute>
-                <AdminJobApplications />
-              </AdminRoute>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/create"
-          element={
-            <ProtectedRoute>
-              <AdminRoute>
-                <CreateJob />
-              </AdminRoute>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/edit/:jobId"
-          element={
-            <ProtectedRoute>
-              <AdminRoute>
-                <EditJob />
-              </AdminRoute>
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin-apps"
+            element={
+              <ProtectedRoute>
+                <AdminRoute>
+                  <AdminJobApplications />
+                </AdminRoute>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/create"
+            element={
+              <ProtectedRoute>
+                <AdminRoute>
+                  <CreateJob />
+                </AdminRoute>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit/:jobId"
+            element={
+              <ProtectedRoute>
+                <AdminRoute>
+                  <EditJob />
+                </AdminRoute>
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </main>
     </div>
   );
 }

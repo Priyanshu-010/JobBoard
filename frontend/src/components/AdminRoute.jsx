@@ -10,7 +10,7 @@ function AdminRoute({children}) {
     return <Navigate to="/login" replace/>
   }
 
-  if(user !== "admin"){
+  if(user.role !== "admin"){
     return <Navigate to="/login" replace/>
   }
 
