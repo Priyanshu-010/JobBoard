@@ -18,14 +18,42 @@ function JobCard({ job }) {
     }
   };
 
+  // const formatDate = (dateString) => {
+  //   return new Date(dateString).toLocaleDateString("en-US", {
+  //     year: "numeric",
+  //     month: "long",
+  //     day: "numeric",
+  //   });
+  // };
+  const timeAgo = (dateString) => {
+    const now = new Date();
+    const past = new Date(dateString);
+    const seconds = Math.floor((now - past) / 1000);
+
+    if (seconds < 10) return "just now";
+    if (seconds < 60) return `${seconds}s ago`;
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}hr ago`;
+    return new Date(past).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    });
+  };
+
   return (
     <div className=" p-6 border border-indigo-500 rounded-xl max-w-100 text-md flex flex-col gap-4">
-      <Link to="/details/:id" className="flex flex-col gap-3" key={job._id}>
+      <Link to="/details/:id" className="flex flex-col gap-2" key={job._id}>
         <h1 className="text-4xl font-extrabold">{job.company}</h1>
         <h1 className="border border-indigo-500 bg-indigo-400 text-white w-fit rounded-2xl px-3 ">
           {job.role}
         </h1>
         <p className="text-lg truncate w-90">{job.description}</p>
+        <p className="">
+          {job?.location} · <span>{timeAgo(job.date)}</span>
+        </p>
+        <p></p>
       </Link>
       <div>
         {hasApplied ? (

@@ -55,9 +55,9 @@ export const getSingleJob = async (req, res) => {
 
 // Admin
 export const createJob = async (req, res) => {
-  const { company, role, description } = req.body;
+  const { company, role, description, location } = req.body;
   try {
-    const job = await Job.create({ company, role, description });
+    const job = await Job.create({ company, role, description, location });
     res.status(201).json(job);
   } catch (error) {
     res
@@ -67,7 +67,7 @@ export const createJob = async (req, res) => {
   }
 };
 export const updateJob = async (req, res) => {
-  const { company, role, description } = req.body;
+  const { company, role, description, location } = req.body;
   try {
     const { id } = req.params;
     const job = await Job.findById(id);
@@ -78,7 +78,7 @@ export const updateJob = async (req, res) => {
 
     const updatedJob = await Job.findByIdAndUpdate(
       id,
-      { company, role, description },
+      { company, role, description, location },
       { new: true }
     );
 

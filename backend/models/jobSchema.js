@@ -14,6 +14,15 @@ const jobSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    location: {
+      type: String,
+      required: true,
+    },
+    date: {
+      type: Date,
+      default: Date.now()
+    },
+
     // createdBy: {
     //   type: mongoose.Schema.Types.ObjectId,
     //   ref: "User", // admin
@@ -43,5 +52,5 @@ const jobSchema = new mongoose.Schema(
   }
 );
 
-const Job = mongoose.model("job", jobSchema)
+const Job = mongoose.model("job", jobSchema);
 export default Job;
