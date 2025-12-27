@@ -5,6 +5,7 @@ export const protect = async (req, res, next) =>{
   const authHeader = req.headers.authorization
 
   if(!authHeader || !authHeader.startsWith("Bearer")){
+    req.user = null;
     return res.status(400).json({message: "Unauthorized"})
   }
 

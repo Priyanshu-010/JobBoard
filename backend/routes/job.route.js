@@ -14,7 +14,7 @@ import {
 const router = express.Router();
 
 // Public
-router.get("/", getJobs);
+router.get("/", protect, getJobs);
 router.get("/:id", getSingleJob);
 
 // Admin
