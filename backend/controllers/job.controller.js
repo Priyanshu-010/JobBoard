@@ -30,6 +30,7 @@ export const getSingleJob = async (req, res) => {
   try {
     const { id } = req.params;
     const userId = req.user?._id;
+    console.log(userId)
     const job = await Job.findById(id);
      if (!job) {
       return res.status(404).json({ message: "Job not found" });

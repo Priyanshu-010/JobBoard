@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 import Jobs from "./pages/user/Jobs";
-import JobsDetail from "./pages/user/JobDetails";
+import JobDetails from "./pages/user/JobDetails";
 import MyApplications from "./pages/user/MyApplications";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -40,7 +40,7 @@ function App() {
             path="/details/:id"
             element={
               <ProtectedRoute>
-                <JobsDetail />
+                <JobDetails />
               </ProtectedRoute>
             }
           />

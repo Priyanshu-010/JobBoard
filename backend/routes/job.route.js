@@ -15,7 +15,7 @@ const router = express.Router();
 
 // Public
 router.get("/", protect, getJobs);
-router.get("/:id", getSingleJob);
+router.get("/:id", protect, getSingleJob);
 
 // Admin
 router.post("/", protect, isAdmin, createJob);

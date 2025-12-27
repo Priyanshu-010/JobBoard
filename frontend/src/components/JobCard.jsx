@@ -10,11 +10,12 @@ function JobCard({ job }) {
     console.log(jobId);
     try {
       await axiosInstance.post(`/job/${jobId}/apply`);
-      navigate("/details/:id");
       toast.success("Applied");
     } catch (error) {
       toast.error("Already Applied");
       console.log(error);
+    } finally {
+      navigate(`/details/${jobId}`);
     }
   };
 
@@ -44,7 +45,11 @@ function JobCard({ job }) {
 
   return (
     <div className=" p-6 border border-indigo-500 rounded-xl max-w-100 text-md flex flex-col gap-4">
-      <Link to="/details/:id" className="flex flex-col gap-2" key={job._id}>
+      <Link
+        to={`/details/${job._id}`}
+        className="flex flex-col gap-2"
+        key={job._id}
+      >
         <h1 className="text-4xl font-extrabold">{job.company}</h1>
         <h1 className="border border-indigo-500 bg-indigo-400 text-white w-fit rounded-2xl px-3 ">
           {job.role}
