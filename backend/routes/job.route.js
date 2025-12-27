@@ -6,12 +6,18 @@ import {
   createJob,
   deleteJob,
   getJobs,
+  getMyApplications,
   getSingleJob,
   updateApplicationStatus,
   updateJob,
 } from "../controllers/job.controller.js";
 
 const router = express.Router();
+
+// User
+router.get("/myApps", protect, getMyApplications)
+router.post("/:id/apply", protect, applyToJob);
+
 
 // Public
 router.get("/", protect, getJobs);
@@ -21,9 +27,6 @@ router.get("/:id", protect, getSingleJob);
 router.post("/", protect, isAdmin, createJob);
 router.put("/:id", protect, isAdmin, updateJob);
 router.delete("/:id", protect, isAdmin, deleteJob);
-
-// User
-router.post("/:id/apply", protect, applyToJob);
 
 // Admin - Applcation Management
 router.patch(

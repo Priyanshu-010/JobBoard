@@ -30,9 +30,9 @@ export const getSingleJob = async (req, res) => {
   try {
     const { id } = req.params;
     const userId = req.user?._id;
-    console.log(userId)
+    console.log(userId);
     const job = await Job.findById(id);
-     if (!job) {
+    if (!job) {
       return res.status(404).json({ message: "Job not found" });
     }
 
@@ -140,6 +140,38 @@ export const applyToJob = async (req, res) => {
   }
 };
 
+export const getMyApplications = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    console.log(userId)
+
+    const jobs = await Job.find({
+      "applications.user": userId,
+    });
+
+    const applications = jobs.map((job) => {
+      const app = job.applications.find((a) => a.user.toString() === userId);
+
+      return {
+        jobId: job._id,
+        company: job.company,
+        role: job.role,
+        status: app.status,
+        appliedAt: app.appliedAt,
+      };
+    });
+
+    res.status(200).json(applications);
+  } catch (error) {
+    res
+      .status(500)
+      .json({
+        message: "Internal Server Error - Failed to fetch applications",
+      });
+    console.log("Error in getMyApplications controller ", error);
+  }
+};
+
 // Admin - Updating Application Status
 export const updateApplicationStatus = async (req, res) => {
   try {
@@ -168,12 +200,10 @@ export const updateApplicationStatus = async (req, res) => {
 
     res.status(200).json({ message: `Application ${status}` });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message:
-          "Internal Server Error - Cannot update application status of the Job",
-      });
+    res.status(500).json({
+      message:
+        "Internal Server Error - Cannot update application status of the Job",
+    });
     console.log("Error in updateApplicationStatus controller", error);
   }
 };

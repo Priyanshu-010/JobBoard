@@ -56,7 +56,7 @@ function JobCard({ job }) {
         </h1>
         <p className="text-lg truncate w-90">{job.description}</p>
         <p className="">
-          {job?.location} · <span>{timeAgo(job.date)}</span>
+          {job?.location} · <span>{timeAgo(job.createdAt)}</span>
         </p>
         <p></p>
       </Link>
