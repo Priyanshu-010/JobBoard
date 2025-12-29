@@ -40,7 +40,6 @@ function AdminJobs() {
               <b>{job.company}</b>
             </p>
             <p>{job.role}</p>
-            <p>{job._id}</p>
           </div>
 
           <div className="flex justify-center items-center gap-4">
