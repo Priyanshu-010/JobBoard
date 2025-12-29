@@ -9,13 +9,12 @@ function JobDetails() {
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  
-
   useEffect(() => {
     const fetchJob = async () => {
       try {
         const res = await axiosInstance.get(`/job/${id}`);
         setJob(res.data);
+        console.log(res.data)
       } catch (err) {
         console.error(err);
       } finally {
@@ -46,8 +45,10 @@ function JobDetails() {
       <h2>{job.role}</h2>
       <p>{job.description}</p>
       <p>
-        {job.location} · <span>{timeAgo(job.date)}</span>
+        {job.location} · <span>{timeAgo(job.createdAt)}</span>
       </p>
+      {/* <p>{job.applications.status}</p> */}
+      
 
       <button
         className={

@@ -109,6 +109,33 @@ export const deleteJob = async (req, res) => {
     console.log("Error in deleteJob controller", error);
   }
 };
+export const getJobApplications = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const job = await Job.findById(id).populate(
+      "applications.user",
+      "name email"
+    );
+
+    if (!job) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    const applications = job.applications.map((app) => ({
+      userId: app.user._id,
+      name: app.user.name,
+      email: app.user.email,
+      status: app.status,
+      appliedAt: app.appliedAt,
+    }));
+
+    res.status(200).json(applications);
+  } catch (error) {
+    console.log("Error in getJobApplications", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
 //User
 export const applyToJob = async (req, res) => {
@@ -143,7 +170,7 @@ export const applyToJob = async (req, res) => {
 export const getMyApplications = async (req, res) => {
   try {
     const userId = req.user.id;
-    console.log(userId)
+    console.log(userId);
 
     const jobs = await Job.find({
       "applications.user": userId,
@@ -163,11 +190,9 @@ export const getMyApplications = async (req, res) => {
 
     res.status(200).json(applications);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Internal Server Error - Failed to fetch applications",
-      });
+    res.status(500).json({
+      message: "Internal Server Error - Failed to fetch applications",
+    });
     console.log("Error in getMyApplications controller ", error);
   }
 };

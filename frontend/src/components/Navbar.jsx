@@ -43,7 +43,7 @@ function Navbar() {
               <Link to="/dashboard" className="hover:text-blue-400">
                 DashBoard
               </Link>
-              <Link to="/admin-apps" className="hover:text-blue-400">
+              <Link to="/admin/jobs" className="hover:text-blue-400">
                 Applications
               </Link>
               <button onClick={handleClick}>Logout</button>

@@ -5,6 +5,7 @@ import {
   applyToJob,
   createJob,
   deleteJob,
+  getJobApplications,
   getJobs,
   getMyApplications,
   getSingleJob,
@@ -18,15 +19,16 @@ const router = express.Router();
 router.get("/myApps", protect, getMyApplications)
 router.post("/:id/apply", protect, applyToJob);
 
+// Admin
+router.post("/", protect, isAdmin, createJob);
+router.put("/:id", protect, isAdmin, updateJob);
+router.delete("/:id", protect, isAdmin, deleteJob);
+router.get("/:id/applications", protect, isAdmin, getJobApplications);
 
 // Public
 router.get("/", protect, getJobs);
 router.get("/:id", protect, getSingleJob);
 
-// Admin
-router.post("/", protect, isAdmin, createJob);
-router.put("/:id", protect, isAdmin, updateJob);
-router.delete("/:id", protect, isAdmin, deleteJob);
 
 // Admin - Applcation Management
 router.patch(

@@ -7,6 +7,7 @@ import MyApplications from "./pages/user/MyApplications";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminJobApplications from "./pages/admin/AdminJobApplications";
+import AdminJobs from "./pages/admin/AdminJobs";
 import CreateJob from "./pages/admin/CreateJob";
 import EditJob from "./pages/admin/EditJob";
 
@@ -64,7 +65,17 @@ function App() {
             }
           />
           <Route
-            path="/admin-apps"
+            path="/admin/jobs"
+            element={
+              <ProtectedRoute>
+                <AdminRoute>
+                  <AdminJobs />
+                </AdminRoute>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/jobs/:id/applications"
             element={
               <ProtectedRoute>
                 <AdminRoute>
