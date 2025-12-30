@@ -5,7 +5,7 @@ export const timeAgo = (dateString) => {
   const past = new Date(dateString);
   const seconds = Math.floor((now - past) / 1000);
 
-  if (isNaN(seconds)) return "N/A"; // Handle invalid dates safely
+  if (isNaN(seconds)) return "N/A";
   if (seconds < 10) return "just now";
   if (seconds < 60) return `${seconds}s ago`;
   
@@ -13,10 +13,10 @@ export const timeAgo = (dateString) => {
   if (minutes < 60) return `${minutes}m ago`;
   
   const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `${hours}h ago`; // Simplified 'hr' to 'h'
+  if (hours < 24) return `${hours}h ago`;
   
   const days = Math.floor(hours / 24);
-  if (days < 7) return `${days}d ago`; // Added days for better context
+  if (days < 7) return `${days}d ago`;
   
   return past.toLocaleDateString("en-US", {
     month: "short",
