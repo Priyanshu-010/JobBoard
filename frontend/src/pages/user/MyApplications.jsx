@@ -8,7 +8,6 @@ function MyApplications() {
     const fetchApps = async () => {
       try {
         const res = await axiosInstance.get("/job/myapps");
-        console.log(res.data);
         setApps(res.data);
       } catch (error) {
         console.log("Error in fetching applications ", error);

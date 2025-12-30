@@ -95,7 +95,7 @@ function App() {
             }
           />
           <Route
-            path="/edit/:jobId"
+            path="/edit/:id"
             element={
               <ProtectedRoute>
                 <AdminRoute>

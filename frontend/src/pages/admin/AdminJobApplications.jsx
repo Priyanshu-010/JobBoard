@@ -11,7 +11,6 @@ function AdminJobApplications() {
     const fetchApps = async () => {
       try {
         const res = await axiosInstance.get(`/job/${id}/applications`);
-        console.log(res.data);
         setApps(res.data);
       } catch (error) {
         console.log("Error in Fetching Admin Applications", error);
@@ -29,17 +28,22 @@ function AdminJobApplications() {
   return (
     <div className="p-6">
       <h1 className="text-2xl mb-4">Applications</h1>
-      {apps.map((app) => (
-        <ApplicationRow
-          key={app.userId} //userId
-          name={app.name}
-          email={app.email}
-          status={app.status}
-          appliedAt={app.appliedAt}
-          isAdmin
-          onUpdateStatus={(status) => updateStatus(app.userId, status)}
-        />
-      ))}
+
+      {apps.length === 0 ? (
+        <div>No Applications Found</div>
+      ) : (
+        apps.map((app) => (
+          <ApplicationRow
+            key={app.userId} //userId
+            name={app.name}
+            email={app.email}
+            status={app.status}
+            appliedAt={app.appliedAt}
+            isAdmin
+            onUpdateStatus={(status) => updateStatus(app.userId, status)}
+          />
+        ))
+      )}
     </div>
   );
 }

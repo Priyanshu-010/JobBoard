@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axios";
 import toast from "react-hot-toast";
+import {PenSquareIcon, Trash2Icon} from "lucide-react"
 
 function AdminJobs() {
   const [jobs, setJobs] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -15,7 +17,6 @@ function AdminJobs() {
     fetchJobs();
   }, []);
 
-  console.log(jobs);
   const handleClick = async (id) => {
     if (window.confirm("Are you sure you want to delete this transaction?")) {
       try {
@@ -29,6 +30,9 @@ function AdminJobs() {
     }
   };
 
+  const handleEdit = async(id)=>{
+    navigate(`/edit/${id}`)
+  }
   return (
     <div className="p-6 flex flex-col gap-4 w-full">
       <h1 className="text-2xl mb-4">All Jobs</h1>
@@ -44,10 +48,18 @@ function AdminJobs() {
 
           <div className="flex justify-center items-center gap-4">
             <button
+              onClick={() => handleEdit(job._id)}
+              className="bg-teal-600 px-4 py-2 rounded cursor-pointer flex"
+            >
+              <PenSquareIcon />
+              Edit
+            </button>
+            <button
               onClick={() => handleClick(job._id)}
-              className="bg-red-600 px-4 py-2 rounded"
+              className="bg-red-600 px-4 py-2 rounded cursor-pointer flex gap-1"
             >
               Delete
+              <Trash2Icon />
             </button>
             <Link
               to={`/admin/jobs/${job._id}/applications`}

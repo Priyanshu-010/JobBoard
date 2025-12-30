@@ -10,7 +10,6 @@ function Jobs() {
       try {
         const res = await axiosInstance.get("/job");
         setJobs(res.data);
-        console.log(res.data)
       } catch (error) {
         console.log(error);
       }

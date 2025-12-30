@@ -128,7 +128,7 @@ export const getJobApplications = async (req, res) => {
       email: app.user.email,
       status: app.status,
       appliedAt: app.appliedAt,
-    }));
+    })).sort((a,b)=> new Date(b.appliedAt) - new Date(a.appliedAt));
 
     res.status(200).json(applications);
   } catch (error) {
