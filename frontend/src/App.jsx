@@ -16,19 +16,19 @@ import Register from "./pages/register";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
+
 function App() {
   return (
-    <div className="text-blue-300 bg-black min-h-screen">
+    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-indigo-500/30 selection:text-indigo-200">
       <Navbar />
-      <main className="container mx-auto p-4 md:p-8">
+      
+      <main className="container mx-auto max-w-7xl p-4 md:p-10 pb-24">
         <Routes>
           {/* AUTH */}
-
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
           {/* USER */}
-
           <Route
             path="/"
             element={
@@ -54,6 +54,7 @@ function App() {
             }
           />
 
+          {/* ADMIN */}
           <Route
             path="/dashboard"
             element={
