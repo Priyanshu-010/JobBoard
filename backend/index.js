@@ -17,7 +17,7 @@ app.use(
   })
 );
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 app.use("/api/job", jobRouter);
 app.use("/api/auth", authRouter);
