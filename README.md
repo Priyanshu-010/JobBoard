@@ -49,6 +49,14 @@
 
 ---
 
+## 🌐 Live Demo
+
+> 🚀 [JobBoard Live](https://job-board-bay-phi.vercel.app/)  
+> backend (https://jobboard-27cx.onrender.com)
+> *(Hosted using Render / Vercel — may take a few seconds to wake up if idle)*
+
+---
+
 ## 📦 Installation & Setup
 
 ### 1. Clone the repository
