@@ -94,3 +94,10 @@ Start the app: npm run dev
 💻 [GitHub](https://github.com/Priyanshu-010)
 
 ---
+
+## 📈 Scalability & Production Readiness
+To scale this JobBoard for production, I would:
+1. **Implement Redis Caching:** To reduce database load for frequently viewed job listings.
+2. **Move to HTTP-Only Cookies:** For more secure JWT storage compared to LocalStorage.
+3. **Use React Query:** For better server-state management and automatic data revalidation.
+4. **Zod Validation:** For stricter type-safety on API requests.
