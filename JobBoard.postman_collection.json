@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "53d6440a-72d7-464b-b722-11da8cad61d9",
+		"name": "JobBoard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37898442"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"random\",\r\n    \"email\": \"random@email.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"random@email.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "getJobs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTRlNzFhZTY5MDA5N2MxMDg3MTE0MWUiLCJpYXQiOjE3NjY4MzQ1NjQsImV4cCI6MTc2NzQzOTM2NH0.O1rFJni2k3k0-v0_98ce-62jJxIiRgb2ZgyXkR0oCdQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/job",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"job"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "createJob",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTQ5MjBmODk4NTc4ZjFlZWE3MjBiMTkiLCJpYXQiOjE3NjY4Mzc2NjIsImV4cCI6MTc2NzQ0MjQ2Mn0.O802QQBGiN3jpkZO-IXC8IqLe3i6H_ulAvbyp_6x_OA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"company\": \"Nvidia\",\r\n    \"role\": \"Senior Developer\",\r\n    \"description\": \"Namm ka senior\",\r\n    \"location\": \"Mumbai\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/job",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"job"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateJob",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTQ5MjBmODk4NTc4ZjFlZWE3MjBiMTkiLCJpYXQiOjE3NjY0MjExMTYsImV4cCI6MTc2NzAyNTkxNn0.4wqAMDpOXCbq_P9ReyCa8Ta5CnibZDskbWrERx_cpqQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"company\": \"Google\",\r\n    \"role\": \"Senior\",\r\n    \"description\": \"Corporate Majdoor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/job/69497299aec093eef88a1f16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"job",
+								"69497299aec093eef88a1f16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteJob",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTQ5MjBmODk4NTc4ZjFlZWE3MjBiMTkiLCJpYXQiOjE3NjY4NTM4NDcsImV4cCI6MTc2NzQ1ODY0N30.q5ndKEonRFW9WUvGwtfhM19ENOpv7Pdgzj0hOT2mZpQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/job/69492b1651104e4931d2a3d1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"job",
+								"69492b1651104e4931d2a3d1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateApplicationStatus",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTQ5MjBmODk4NTc4ZjFlZWE3MjBiMTkiLCJpYXQiOjE3NjY0MjExMTYsImV4cCI6MTc2NzAyNTkxNn0.4wqAMDpOXCbq_P9ReyCa8Ta5CnibZDskbWrERx_cpqQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/job/69497221aec093eef88a1f10/applications/694974571cfc4f5bd5a62830",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"job",
+								"69497221aec093eef88a1f10",
+								"applications",
+								"694974571cfc4f5bd5a62830"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "ApplyTojob",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTQ5NzQ1NzFjZmM0ZjViZDVhNjI4MzAiLCJpYXQiOjE3NjY0Njg4NDEsImV4cCI6MTc2NzA3MzY0MX0.pZpjecYWdZBxWJ72hmLk54Rwt3ars1I9WmovBp_ZI6k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/job/69492b1651104e4931d2a3d1/apply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"job",
+								"69492b1651104e4931d2a3d1",
+								"apply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MyApplications",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTUwMGFjNzVlNzNhNTIxYjg3YTNlNmQiLCJpYXQiOjE3NjY4NTM5NDAsImV4cCI6MTc2NzQ1ODc0MH0.p6MhY5gogos6a6SzsTjkUAXlkKpTVQUl7R1jzp4GSQw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/job/myApps",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"job",
+								"myApps"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
